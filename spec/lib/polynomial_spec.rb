@@ -10,22 +10,22 @@ RSpec.describe Polynomial do
     it 'creates a new polynomial given an input coefficients' do
       expect(subject).to be_a Polynomial
     end
+  end
 
-    it 'creates a Hash of coefficients indexed by exponent' do
-      expect(subject.coefficients).to eql(
-        0 => 1
-      )
-    end
+  describe '#coefficients' do
+    TEST_CASES = {
+      [1] => { 0 => 1 },
+      [1, 2, 3] => { 2 => 1, 1 => 2, 0 => 3 },
+      [1, 0, -2, 3] => { 3 => 1, 2 => 0, 1 => -2, 0 => 3 }
+    }.freeze
 
-    context 'for a more complex equation' do
-      let(:coefficients) { [1, 2, 3] }
+    TEST_CASES.each do |input, expected_output|
+      context "given input coefficients #{input}" do
+        subject { described_class.new(input) }
 
-      it 'creates a Hash of coefficients indexed by exponent' do
-        expect(subject.coefficients).to eql(
-          2 => 1,
-          1 => 2,
-          0 => 3
-        )
+        it "we get #{expected_output}" do
+          expect(subject.coefficients).to eql expected_output
+        end
       end
     end
   end
