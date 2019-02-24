@@ -22,7 +22,7 @@ class Polynomial
     coefficients.reverse_each.each_with_object(+'') do |exponent_coefficient, result|
       exponent, coefficient = exponent_coefficient
       is_first = (result == '')
-      if coefficient.positive?
+      if coefficient.abs.positive?
         result <<
           "#{coefficient_expression(is_first, coefficient, exponent)}#{exponent_expression(exponent)}"
       end
@@ -44,6 +44,8 @@ class Polynomial
 
   def exponent_expression(exponent)
     return '' if exponent.zero?
+
+    return 'x' if exponent == 1
 
     "x^#{exponent}"
   end
