@@ -3,12 +3,18 @@
 require_relative '../../lib/polynomial'
 
 RSpec.describe Polynomial do
-  describe '#initialize' do
-    let(:input_expression) { '1' }
-    subject { described_class.new(input_expression) }
+  let(:coefficients) { [1] }
+  subject { described_class.new(coefficients) }
 
-    it 'creates a new polynomial given an input string' do
+  describe '#initialize' do
+    it 'creates a new polynomial given an input coefficients' do
       expect(subject).to be_a Polynomial
+    end
+
+    it 'creates a Hash of coefficients indexed by exponent' do
+      expect(subject.coefficients).to eql(
+        0 => 1
+      )
     end
   end
 end
