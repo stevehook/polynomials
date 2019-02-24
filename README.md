@@ -10,3 +10,10 @@ Setup:
 In order to run the tests:
 
     $ bundle exec rspec spec
+
+## TODO
+
+- [ ] More tests for the `Polynomial` class - likely to be
+missing a few edge cases
+- [ ] More requests specs for `PolynomialsController` to cover
+invalid inputs and other errors
