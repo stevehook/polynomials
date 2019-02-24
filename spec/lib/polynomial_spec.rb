@@ -13,13 +13,13 @@ RSpec.describe Polynomial do
   end
 
   describe '#coefficients' do
-    TEST_CASES = {
+    COEFFICIENTS_TEST_CASES = {
       [1] => { 0 => 1 },
       [1, 2, 3] => { 2 => 1, 1 => 2, 0 => 3 },
       [1, 0, -2, 3] => { 3 => 1, 2 => 0, 1 => -2, 0 => 3 }
     }.freeze
 
-    TEST_CASES.each do |input, expected_output|
+    COEFFICIENTS_TEST_CASES.each do |input, expected_output|
       context "given input coefficients #{input}" do
         subject { described_class.new(input) }
 
@@ -31,13 +31,13 @@ RSpec.describe Polynomial do
   end
 
   describe '#differentiate' do
-    TEST_CASES = {
+    DIFFERENTIATE_TEST_CASES = {
       [1] => {},
       [1, 2, 3] => { 1 => 2, 0 => 2 },
       [1, 0, -2, 3] => { 2 => 3, 1 => 0, 0 => -2 }
     }.freeze
 
-    TEST_CASES.each do |input, expected_output|
+    DIFFERENTIATE_TEST_CASES.each do |input, expected_output|
       context "given original inputs #{input}" do
         subject { described_class.new(input) }
         let(:result) { subject.differentiate }
@@ -50,13 +50,13 @@ RSpec.describe Polynomial do
   end
 
   describe '#to_s' do
-    TEST_CASES = {
+    TO_S_TEST_CASES = {
       [1] => '1',
       [1, 2, 3] => 'x^2+2x+3',
       [1, 0, -2, 3] => 'x^3-2x+3'
     }.freeze
 
-    TEST_CASES.each do |input, expected_output|
+    TO_S_TEST_CASES.each do |input, expected_output|
       context "given original inputs #{input}" do
         subject { described_class.new(input) }
         let(:result) { subject.to_s }
