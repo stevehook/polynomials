@@ -1,24 +1,12 @@
-# README
+# Polynomials
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple Web service that differentiates polynomial expressions
+implemented as a minimal Ruby on Rails API application.
 
-Things you may want to cover:
+Setup:
 
-* Ruby version
+    $ bundle install
 
-* System dependencies
+In order to run the tests:
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+    $ bundle exec rspec spec
