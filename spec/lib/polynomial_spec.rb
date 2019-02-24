@@ -16,5 +16,17 @@ RSpec.describe Polynomial do
         0 => 1
       )
     end
+
+    context 'for a more complex equation' do
+      let(:coefficients) { [1, 2, 3] }
+
+      it 'creates a Hash of coefficients indexed by exponent' do
+        expect(subject.coefficients).to eql(
+          2 => 1,
+          1 => 2,
+          0 => 3
+        )
+      end
+    end
   end
 end
