@@ -2,6 +2,7 @@
 
 require_relative '../../lib/polynomial'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Polynomial do
   let(:coefficients) { [1] }
   subject { described_class.new(coefficients) }
@@ -68,3 +69,4 @@ RSpec.describe Polynomial do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
