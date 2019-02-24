@@ -11,10 +11,40 @@ class Polynomial
   end
 
   def differentiate
-    new_coefficients = {}
-    coefficients.reverse_each do |exponent, coefficient|
-      new_coefficients[exponent - 1] = exponent * coefficient if exponent.positive?
+    new_coefficients = coefficients.reverse_each.each_with_object({}) do |exponent_coefficient, result|
+      exponent, coefficient = exponent_coefficient
+      result[exponent - 1] = exponent * coefficient if exponent.positive?
     end
     Polynomial.new(new_coefficients.values)
+  end
+
+  def to_s
+    coefficients.reverse_each.each_with_object(+'') do |exponent_coefficient, result|
+      exponent, coefficient = exponent_coefficient
+      is_first = (result == '')
+      if coefficient.positive?
+        result <<
+          "#{coefficient_expression(is_first, coefficient, exponent)}#{exponent_expression(exponent)}"
+      end
+    end
+  end
+
+  private
+
+  def coefficient_expression(is_first, coefficient, exponent)
+    expression = +''
+    unless is_first && coefficient.positive?
+      expression << (coefficient.positive? ? '+' : '-')
+    end
+    return expression if coefficient.abs == 1 && exponent.positive?
+
+    expression << coefficient.abs.to_s
+    expression
+  end
+
+  def exponent_expression(exponent)
+    return '' if exponent.zero?
+
+    "x^#{exponent}"
   end
 end
