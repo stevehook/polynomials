@@ -29,4 +29,23 @@ RSpec.describe Polynomial do
       end
     end
   end
+
+  describe '#differentiate' do
+    TEST_CASES = {
+      [1] => {},
+      [1, 2, 3] => { 1 => 2, 0 => 2 },
+      [1, 0, -2, 3] => { 2 => 3, 1 => 0, 0 => -2 }
+    }.freeze
+
+    TEST_CASES.each do |input, expected_output|
+      context "given original inputs #{input}" do
+        subject { described_class.new(input) }
+        let(:result) { subject.differentiate }
+
+        it "we get #{expected_output} for the derived function" do
+          expect(result.coefficients).to eql expected_output
+        end
+      end
+    end
+  end
 end

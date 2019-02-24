@@ -11,5 +11,10 @@ class Polynomial
   end
 
   def differentiate
+    new_coefficients = {}
+    coefficients.reverse_each do |exponent, coefficient|
+      new_coefficients[exponent - 1] = exponent * coefficient if exponent.positive?
+    end
+    Polynomial.new(new_coefficients.values)
   end
 end
