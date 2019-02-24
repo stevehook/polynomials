@@ -48,4 +48,23 @@ RSpec.describe Polynomial do
       end
     end
   end
+
+  describe '#to_s' do
+    TEST_CASES = {
+      [1] => '1',
+      [1, 2, 3] => 'x^2+2x+3',
+      [1, 0, -2, 3] => 'x^3-2x+3'
+    }.freeze
+
+    TEST_CASES.each do |input, expected_output|
+      context "given original inputs #{input}" do
+        subject { described_class.new(input) }
+        let(:result) { subject.to_s }
+
+        it "string representation is #{expected_output}" do
+          expect(result.to_s).to eql expected_output
+        end
+      end
+    end
+  end
 end
